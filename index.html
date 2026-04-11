@@ -1,248 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AzizBgBoss - Affordable and reliable programming services for scripts, tools, websites, tutorials, and more!">
-    <title>AzizBgBoss - Your Go-To Programmer!</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AzizBgBoss</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap');
 
-        header {
-            background: #0073e6;
-            color: #fff;
-            padding: 1.5rem 0;
-            text-align: center;
-        }
+  :root {
+    --green: #00e676;
+    --green-dim: #00b34a;
+    --green-dark: #004d1a;
+    --amber: #ffb300;
+    --bg: #0a0d0a;
+    --bg2: #0f140f;
+    --bg3: #141a14;
+    --border: #1a2e1a;
+    --text: #c8e6c9;
+    --muted: #4caf50;
+    --mono: 'Share Tech Mono', 'Courier New', monospace;
+    --display: 'VT323', 'Courier New', monospace;
+  }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        header p {
-            margin: 0.5rem 0 0;
-            font-size: 1.2rem;
-        }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            background: #005bb5;
-            padding: 0.5rem;
-        }
+  /* scanlines */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.07) 2px,
+      rgba(0,0,0,0.07) 4px
+    );
+    pointer-events: none;
+    z-index: 100;
+  }
 
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 1rem;
-            font-weight: bold;
-        }
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.2rem;
+  }
 
-        nav a:hover {
-            text-decoration: underline;
-        }
+  /* HEADER */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2rem;
+    margin-bottom: 2.5rem;
+  }
 
-        main {
-            max-width: 800px;
-            margin: 2rem auto;
-            background: #fff;
-            padding: 2rem;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+  .prompt-line {
+    color: var(--green-dim);
+    font-family: var(--mono);
+    font-size: 13px;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.04em;
+  }
 
-        section {
-            margin-bottom: 2rem;
-        }
+  .site-title {
+    font-family: var(--display);
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    color: var(--green);
+    letter-spacing: 0.06em;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+  }
 
-        section h2 {
-            color: #0073e6;
-            border-bottom: 2px solid #f4f4f4;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-        }
+  .tagline {
+    color: var(--amber);
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.2rem;
+  }
 
-        ul {
-            padding: 0;
+  .bio {
+    color: var(--text);
+    font-size: 14px;
+    max-width: 580px;
+    line-height: 1.7;
+    border-left: 2px solid var(--green-dark);
+    padding-left: 1rem;
+  }
 
-        }
+  .bio a { color: var(--green); text-decoration: none; }
+  .bio a:hover { text-decoration: underline; }
 
-        ul li {
-            margin-bottom: 0.5rem;
-            margin-left: 1rem;
-        }
+  /* NAV */
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
 
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: #0073e6;
-            color: #fff;
-            margin-top: 2rem;
-        }
+  .nav a {
+    color: var(--green-dim);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    letter-spacing: 0.05em;
+  }
 
-        footer a {
-            color: #ffeb3b;
-            text-decoration: none;
-        }
-    </style>
+  .nav a:hover {
+    background: var(--green-dark);
+    color: var(--green);
+    border-color: var(--green-dim);
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 3rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    color: var(--green);
+    letter-spacing: 0.06em;
+  }
+
+  .section-count {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  /* REPO CARDS */
+  .repo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .repo-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .repo-card:hover {
+    border-color: var(--green-dim);
+    background: var(--bg3);
+  }
+
+  .repo-name {
+    color: var(--green);
+    font-family: var(--display);
+    font-size: 1.35rem;
+    letter-spacing: 0.04em;
+  }
+
+  .repo-desc {
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .repo-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 2px 7px;
+    border: 1px solid var(--green-dark);
+    color: var(--muted);
+    background: var(--bg);
+    letter-spacing: 0.04em;
+  }
+
+  .tag.lang {
+    color: var(--amber);
+    border-color: #3d2f00;
+  }
+
+  .repo-link {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-size: 12px;
+    color: var(--green-dim);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+
+  .repo-link:hover { color: var(--green); text-decoration: underline; }
+
+  /* OTHERS TABLE */
+  .others-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .other-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    background: var(--bg2);
+    flex-wrap: wrap;
+  }
+
+  .other-row:last-child { border-bottom: 1px solid var(--border); }
+  .other-row:hover { background: var(--bg3); }
+
+  .other-name {
+    color: var(--green);
+    font-size: 14px;
+    min-width: 160px;
+    text-decoration: none;
+  }
+
+  .other-name:hover { text-decoration: underline; }
+
+  .other-desc {
+    color: var(--text);
+    font-size: 13px;
+    flex: 1;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1.2rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    background: var(--bg2);
+    flex-wrap: wrap;
+  }
+
+  .contact-row:last-child { border-bottom: 1px solid var(--border); }
+
+  .contact-label {
+    color: var(--muted);
+    font-size: 12px;
+    min-width: 80px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .contact-value {
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  .contact-value a {
+    color: var(--green);
+    text-decoration: none;
+  }
+
+  .contact-value a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+    color: var(--muted);
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Fallback for no Google Fonts */
+  @media (prefers-reduced-data: reduce) {
+    :root {
+      --mono: 'Courier New', monospace;
+      --display: 'Courier New', monospace;
+    }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <h1>AzizBgBoss - Your Go-To Programmer!</h1>
-        <p>
-            Affordable, reliable, and tailored programming solutions for your needs.
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <p class="prompt-line">~/AzizBgBoss $ whoami</p>
+    <h1 class="site-title">AzizBgBoss</h1>
+    <p class="tagline">// hobbyist developer &mdash; Tunisia &mdash; GMT+1</p>
+    <p class="bio">
+      I'm Aziz, a self-taught developer from Tunisia who builds things for fun
+      and because I can't stop myself. I write code for Nintendo DS, Game Boy Advance,
+      BlackBerry phones, and whatever hardware I have lying around.
+      Python, C, Java, J2ME, JavaScript &mdash; whatever gets the job done.
+      <br><br>
+      Not freelancing. Just building.
+      Check my <a href="https://github.com/AzizBgBoss" target="_blank" rel="noopener">GitHub</a> for all projects.
+    </p>
+  </header>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="Page sections">
+    <a href="#featured">[ featured ]</a>
+    <a href="#others">[ other projects ]</a>
+    <a href="#contact">[ contact ]</a>
+    <a href="https://github.com/AzizBgBoss" target="_blank" rel="noopener">[ github &nearr; ]</a>
+  </nav>
+
+  <!-- FEATURED PROJECTS -->
+  <section class="section" id="featured">
+    <div class="section-header">
+      <h2 class="section-title">Featured Projects</h2>
+      <span class="section-count">// 4 repos</span>
+    </div>
+
+    <div class="repo-grid">
+
+      <div class="repo-card">
+        <div class="repo-name">TerrariaDS</div>
+        <p class="repo-desc">
+          A Terraria remake (not a port) for the Nintendo DS. Terrain generation,
+          caves, crafting, music, slime enemies, saving/loading &mdash; built from scratch in C.
         </p>
-    </header>
-    <nav>
-        <a href="#services">Services</a>
-        <a href="#why-me">Why Me?</a>
-        <a href="#contact">Contact</a>
-        <a href="#why-not-ai">Why not AI?</a>
-    </nav>
-    <main>
-        <img src="goat.webp" width="100%">
-        <section>
-            <h2>About Me</h2>
-            <p>
-                Hi! I’m <strong>AzizBgBoss</strong>, a 17-year-old programmer from Tunisia. Programming is my passion—it’s easy and fun for me thanks to my logical mindset. I’ve got intermediate skills in <strong>Python</strong>, <strong>JavaScript</strong>, and <strong>Arduino/C++ scripting</strong>, and I’m constantly learning and improving. I can work with clients who speak English, Arabic, French and some Spanish.
-            </p>
-            <p>
-                You can find my projects on my <a href="https://github.com/AzizBgBoss/">Github</a> page.
-            </p>
-            <p>
-                I’m also working on my website, <a href="https://utterlink.com" target="_blank">utterlink.com</a> (still in development), and have built many hobbyist tools and small projects. If I need something to make my life easier, I just build it myself. I’ve even created simple yet effective AI bots for tasks like puzzle-solving.
-            </p>
-        </section>
+        <div class="repo-meta">
+          <span class="tag lang">C</span>
+          <span class="tag">Nintendo DS</span>
+          <span class="tag">devkitARM</span>
+          <span class="tag">active</span>
+        </div>
+        <a class="repo-link" href="https://github.com/AzizBgBoss/TerrariaDS" target="_blank" rel="noopener">&rarr; github.com/AzizBgBoss/TerrariaDS</a>
+      </div>
 
-        <section id="services">
-            <h2>What I Can Do for You</h2>
-            <ul>
-                <li><strong>Custom Scripts & Tools</strong>: Automation scripts, simple AI bots, and unique problem-solving solutions.</li>
-                <li><strong>Websites & Portfolios</strong>: Beautiful HTML portfolios and basic websites using HTML5, Flask, or PHP.</li>
-                <li><strong>Tutorials & Teaching</strong>: Step-by-step guides or live programming lessons tailored to your needs.</li>
-                <li><strong>Discord Bots</strong>: Custom bots designed to fit your server requirements.</li>
-                <li><strong>Hobby Project Assistance</strong>: Bring your small project ideas to life with my help. <i><b>Example:</b> I can help you automate parts of your house! I'll make you the scripts, tell you what parts you need and how to integrate the Arduino device into your house!</i></li>
-                <li><strong>Niche solution</strong>: It doesn't matter how niche your needs are, I'll fullfill them.</li>
-                <h1>Example Project Offerings</h1>
-
-                <details>
-                    <summary>Web-Based Solutions</summary>
-                    <ul>
-                        <li>A simple Flask-based web app to collect and organize data into files or spreadsheets.</li>
-                        <li>A static portfolio page for clients to showcase their skills or projects.</li>
-                        <li>A website to display project demonstrations or simulations.</li>
-                        <li>An interactive online quiz generator with results exportable to CSV.</li>
-                        <li>A customizable online (flask) or offline (tk) to-do list or task manager for personal use.</li>
-                    </ul>
-                </details>
-
-                <details>
-                    <summary>Automation Tools</summary>
-                    <ul>
-                        <li>A file organizer that renames and moves files based on patterns or metadata.</li>
-                        <li>A Python script to batch download and sort images or documents from URLs.</li>
-                        <li>A tool to scrape product prices or stock availability and send alerts.</li>
-                        <li>An automated script to clean up and format messy text data.</li>
-                        <li>A CSV to JSON or XML converter for developers working with APIs.</li>
-                    </ul>
-                </details>
-
-                <details>
-                    <summary>AI and Data Prediction</summary>
-                    <ul>
-                        <li>A small AI to predict valid or invalid entries based on client-provided rules or training.</li>
-                        <li>A data trend analysis tool for predicting future values, such as sales or inventory.</li>
-                        <li>An AI that evaluates input data for patterns and highlights anomalies.</li>
-                        <li>A predictive AI to estimate costs or timelines for projects using past data.</li>
-                    </ul>
-                </details>
-
-                <details>
-                    <summary>Arduino-Based Fun and Niche Projects</summary>
-                    <ul>
-                        <li>A basic Arduino-based "PC" using a CRT TV as a display, featuring a menu system and simple applications like a clock or notepad.</li>
-                        <li>An Arduino-driven robot that can follow lines or detect obstacles.</li>
-                        <li>A handheld retro gaming console using an OLED screen and buttons.</li>
-                        <li>A DIY weather station that logs and displays temperature, humidity, and pressure.</li>
-                    </ul>
-                </details>
-
-                <details>
-                    <summary>Educational Tools</summary>
-                    <ul>
-                        <li>A Flask-based tool for generating and practicing math quizzes.</li>
-                        <li>A Python-based flashcard program to help study any topic interactively.</li>
-                    </ul>
-                </details>
-                
-                <details>
-                    <summary>Crypto and trading assistance tools</summary>
-                    <ul>
-                        <li>A tool that uses AI to predict when it's <b>optimal</b> to buy or sell assets.</li>
-                        <li>An app that's made for watching crypto prices and features can be shaped to your needs.</li>
-                    </ul>
-                </details>
-
-                <details>
-                    <summary>Miscellaneous and Fun Projects</summary>
-                    <ul>
-                        <li>A script to generate and print custom QR codes.</li>
-                        <li>A retro-style game, such as Snake or Pong, playable in a browser or on an OLED screen.</li>
-                        <li>A calculator program that solves and explains algebraic equations step-by-step.</li>
-                        <li>A program to generate custom pixel art based on input parameters.</li>
-                        <li>A DIY "Etch-a-Sketch" using potentiometers and an OLED display.</li>
-                    </ul>
-                </details>
-            </ul>
-        </section>
-
-        <section id="why-me">
-            <h2>Why Work With Me?</h2>
-            <ul>
-                <li><strong>Affordable Prices</strong>: No hefty fees—just pocket money rates!</li>
-                <li><strong>Crypto-Friendly</strong>: Prefer payments in USDT (TRX20), but I’m open to gift cards too.</li>
-                <li><strong>Reliable & Fast</strong>: Tasks completed in 2-3 days or sooner for simple ones.</li>
-                <li><strong>Flexibility</strong>: I’ll modify work to meet your needs, with refunds offered for special cases.</li>
-                <li><strong>Friendly Communication</strong>: Clear explanations and easy to talk to. I make sure you totally understand the product you have so you don't have any unclear matter and so you be able to modify the product yourself.</li>
-                <li><strong>Problem-Solving Spirit</strong>: I love finding unique solutions for tricky problems.</li>
-            </ul>
-        </section>
-
-        <section>
-            <i><b>Let's be realistic</b>—a kid asking to be paid with crypto or gift cards might sound sketchy at first,</i> and I completely understand your concern, especially given the association between scams and cryptocurrencies. However, as a 16-year-old, I currently don't have access to credit cards, and platforms like PayPal or Cash App aren't easy to use in my country. Crypto, on the other hand, offers flexibility for international clients and comes with lower transaction fees. To ensure trust, I always provide a preview of the product before payment so you can be confident you're getting what you paid for. If you're still uncomfortable with this payment method, we can discuss alternatives in special cases to find a solution that works for both of us.
-        </section>
-
-        <section id="why-not-ai">
-            <h2>Why not choose AI instead?</h2>
-            While AI can generate code and provide explanations exceptionally well, it struggles to adapt seamlessly to a client’s unique working environment, whether physical or digital. One advantage of working with a human is accountability; I take full responsibility for my work, unlike AI. Additionally, humans can easily assess and integrate solutions by analyzing the specific context. For example, if a client shares a picture of a project, I can offer tailored advice and insights based on what I see. Similarly, if a client wants to integrate code into an existing project, I can identify the necessary modifications, understand the structure, and test the outcome—eliminating the need for trial and error on their part. AI still has a long way to go before it can handle these tasks efficiently. This gap gives me an opportunity to expand my expertise, enhance my projects, and work toward securing even better opportunities.
-        </section>
-
-        <section id="contact">
-            <h2>Contact Me</h2>
-            <p>
-                Ready to work with me? Here’s how you can reach me:
-            </p>
-            <ul>
-                <li><strong>Email</strong>: <a href="mailto:mohamedazizbenghezala64@gmail.com">mohamedazizbenghezala64@gmail.com</a></li>
-                <li><strong>Discord</strong>: Available upon request after email communication.</li>
-            </ul>
-            <p>
-                I’ll typically respond within an hour. Payment is only requested after you preview the product and confirm your satisfaction.
-            </p>
-        </section>
-    </main>
-    <footer>
-        <p>
-            &copy; 2025 AzizBgBoss. Built with care and passion.
+      <div class="repo-card">
+        <div class="repo-name">Mapster / MapsterGBA</div>
+        <p class="repo-desc">
+          Mapster is an original game, with a port to the Game Boy Advance.
+          Check both versions.
         </p>
-    </footer>
+        <div class="repo-meta">
+          <span class="tag lang">C</span>
+          <span class="tag">Game Boy Advance</span>
+          <span class="tag">GBA</span>
+        </div>
+        <a class="repo-link" href="https://github.com/AzizBgBoss/MapsterGBA" target="_blank" rel="noopener">&rarr; MapsterGBA</a>
+        <a class="repo-link" href="https://github.com/AzizBgBoss/mapster" target="_blank" rel="noopener">&rarr; mapster (original)</a>
+      </div>
+
+      <div class="repo-card">
+        <div class="repo-name">BBIRC</div>
+        <p class="repo-desc">
+          A full IRC client MIDlet for the BlackBerry Bold 9700. Nick highlighting,
+          UTF-8 decoding, IRC formatting, scroll performance optimizations &mdash;
+          built for a phone from 2009.
+        </p>
+        <div class="repo-meta">
+          <span class="tag lang">Java / J2ME</span>
+          <span class="tag">BlackBerry</span>
+          <span class="tag">IRC</span>
+        </div>
+        <a class="repo-link" href="https://github.com/AzizBgBoss/BBIRC" target="_blank" rel="noopener">&rarr; github.com/AzizBgBoss/BBIRC</a>
+      </div>
+
+      <div class="repo-card">
+        <div class="repo-name">BBIDE</div>
+        <p class="repo-desc">
+          A J2ME code editor MIDlet for the BlackBerry Bold 9700, with a custom
+          bitmap font renderer (TinyFont) built for the device's 480&times;360 screen.
+        </p>
+        <div class="repo-meta">
+          <span class="tag lang">Java / J2ME</span>
+          <span class="tag">BlackBerry</span>
+          <span class="tag">bitmap fonts</span>
+        </div>
+        <a class="repo-link" href="https://github.com/AzizBgBoss/BBIDE" target="_blank" rel="noopener">&rarr; github.com/AzizBgBoss/BBIDE</a>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- OTHER PROJECTS -->
+  <section class="section" id="others">
+    <div class="section-header">
+      <h2 class="section-title">Other Projects</h2>
+      <span class="section-count">// projects not too big or not too proud of</span>
+    </div>
+
+    <div class="others-list">
+      <div class="other-row">
+        <a class="other-name" href="https://github.com/AzizBgBoss/wordle-j2me" target="_blank" rel="noopener">wordle-j2me</a>
+        <span class="other-desc">Wordle clone for J2ME / BlackBerry. Multi-screen: BB 9700 and Curve 9320.</span>
+      </div>
+      <div class="other-row">
+        <a class="other-name" href="https://github.com/AzizBgBoss/MicroCityNDS" target="_blank" rel="noopener">MicroCityNDS</a>
+        <span class="other-desc">Port of MicroCity (Arduboy game by jhhoward) to the Nintendo DS.</span>
+      </div>
+      <div class="other-row">
+        <a class="other-name" href="https://github.com/AzizBgBoss" target="_blank" rel="noopener">+ more on GitHub</a>
+        <span class="other-desc">Automation scripts, bots, tools, and experiments.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-header">
+      <h2 class="section-title">Contact</h2>
+      <span class="section-count">// reach out</span>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-row">
+        <span class="contact-label">email</span>
+        <span class="contact-value">
+          <a href="mailto:mohamedazizbenghezala64@gmail.com">mohamedazizbenghezala64@gmail.com</a>
+        </span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">github</span>
+        <span class="contact-value">
+          <a href="https://github.com/AzizBgBoss" target="_blank" rel="noopener">github.com/AzizBgBoss</a>
+        </span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">discord</span>
+        <span class="contact-value">
+          <a href="https://discord.gg/z5FAYjfVxR" target="_blank" rel="noopener">discord.gg/z5FAYjfVxR</a>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>&copy; 2026 AzizBgBoss &mdash; Tunisia</span>
+    <span>built with: HTML + CSS + stubbornness</span>
+  </footer>
+
+</div>
 </body>
 </html>
